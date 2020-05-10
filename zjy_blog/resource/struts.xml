@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.5//EN"
+        "http://struts.apache.org/dtds/struts-2.5.dtd">
+<struts>
+    <!--    开发模式-->
+    <constant name="struts.devMode" value="true"/>
+    <constant name="struts.enable.DynamicMethodInvocation" value="true"/>
+    <package name="struts" extends="struts-default" strict-method-invocation="false">
+        <!--        配置拦截器-->
+        <interceptors>
+            <interceptor name="loginintercept" class="com.itzjy.web.loginintercept"></interceptor>
+        </interceptors>
+        <global-results>
+            <result name="login">/mgr_login.jsp</result>
+        </global-results>
+
+
+        <action name="log_*" class="jump" method="{1}">
+            <result name="top">/WEB-INF/mgr/mgr_top.jsp</result>
+            <result name="left">/WEB-INF/mgr/mgr_left.jsp</result>
+            <result name="account">/WEB-INF/mgr/mgr_account.jsp</result>
+            <result name="add">/WEB-INF/mgr/mgr_add_article.jsp</result>
+        </action>
+
+        <action name="loginAciton_*" class="loginaction" method="{1}">
+            <result name="success">/WEB-INF/mgr/mgr_index.jsp</result>
+
+            <result name="loginexit" type="redirect">/mgr_login.jsp</result>
+            <!--            自己的-->
+            <interceptor-ref name="loginintercept">
+                <param name="excludeMethods">login</param>
+            </interceptor-ref>
+            <!--            默认拦截器-->
+            <interceptor-ref name="defaultStack"></interceptor-ref>
+            <allowed-methods>login,loginexit</allowed-methods>
+        </action>
+
+        <!--        分类-->
+        <action name="category_*" class="ifcation" method="{1}">
+            <result name="list">/WEB-INF/mgr/mgr_category.jsp</result>
+            <result name="listAction" type="redirectAction">category_list.action</result>
+            <!--            自己的-->
+            <interceptor-ref name="loginintercept"></interceptor-ref>
+            <!--            默认拦截器-->
+            <interceptor-ref name="defaultStack"></interceptor-ref>
+            <allowed-methods>add,list,updateui,update</allowed-methods>
+        </action>
+
+        <action name="article_*" class="article" method="{1}">
+            <result name="list">/WEB-INF/mgr/mgr_main.jsp</result>
+            <result name="edit">/WEB-INF/mgr/mgr_edit_article.jsp</result>
+            <result name="del" type="redirectAction">article_pagelist.action</result>
+            <!--            自己的-->
+            <interceptor-ref name="loginintercept">
+                <param name="excludeMethods">getCategory</param>
+            </interceptor-ref>
+            <!--            默认拦截器-->
+            <interceptor-ref name="defaultStack"></interceptor-ref>
+
+            <allowed-methods>list,pagelist,del,getCategory,add,edit,update</allowed-methods>
+        </action>
+
+<!--        前端-->
+        <action name="web_*" class="webaction" method="{1}">
+            <allowed-methods>getList,getDetail</allowed-methods>
+        </action>
+    </package>
+
+
+</struts>

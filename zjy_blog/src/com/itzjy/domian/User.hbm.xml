@@ -1,0 +1,17 @@
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <!--name模型的全名称-->
+    <class name="com.itzjy.domian.User" dynamic-insert="true" table="user">
+        <id name="id">
+            <!--nativer如果是mysql id会自动增长-->
+            <generator class="native"/>
+        </id>
+        <!--如果模型的属性和数据库的列名一样就不用写column-->
+        <property name="username" column="username" />
+        <property name="password" column="password" />
+
+
+    </class>
+</hibernate-mapping>

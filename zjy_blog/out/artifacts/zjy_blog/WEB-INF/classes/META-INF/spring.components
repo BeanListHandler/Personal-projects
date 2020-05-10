@@ -1,0 +1,13 @@
+#
+#Sat May 09 18:18:10 CST 2020
+com.itzjy.service.impl.Articleserviceimpl=org.springframework.stereotype.Component
+com.itzjy.web.jump=org.springframework.stereotype.Component
+com.itzjy.web.WebAction=org.springframework.stereotype.Component
+com.itzjy.dao.impl.logindaoimpl=org.springframework.stereotype.Component
+com.itzjy.dao.impl.Articledaoimpl=org.springframework.stereotype.Component
+com.itzjy.web.Loginaction=org.springframework.stereotype.Component
+com.itzjy.web.Ifcation=org.springframework.stereotype.Component
+com.itzjy.dao.impl.Ifactiondaoimpl=org.springframework.stereotype.Component
+com.itzjy.web.Articlec=org.springframework.stereotype.Component
+com.itzjy.service.impl.Ifactionserviceimpl=org.springframework.stereotype.Component
+com.itzjy.service.impl.loginserviceimpl=org.springframework.stereotype.Component
